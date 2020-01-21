@@ -3,6 +3,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import com.spartaglobal.RestAssuredTFLAPI.Config.ArrivalsByStopConfig;
 import com.spartaglobal.RestAssuredTFLAPI.Config.BaseConfig;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,9 +21,9 @@ public class ArrivalsByStopTest {
                 + ArrivalsByStopConfig.stopId
                 + "?direction="
                 + ArrivalsByStopConfig.direction
-                +"&"
+                +"&app_id="
                 + BaseConfig.app_id
-                +"&"
+                +"&app_key="
                 + BaseConfig.app_key
         );
     }
@@ -40,7 +41,7 @@ public class ArrivalsByStopTest {
         arrivalResponse
                 .then()
                 .assertThat()
-                .contentType("application/json; charset=utf-8");
+                .contentType(ContentType.JSON);
     }
 
     @Test
