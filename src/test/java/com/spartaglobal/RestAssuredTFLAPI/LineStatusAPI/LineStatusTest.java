@@ -1,6 +1,7 @@
 package com.spartaglobal.RestAssuredTFLAPI.LineStatusAPI;
 import static io.restassured.RestAssured.*;
 import com.spartaglobal.RestAssuredTFLAPI.Config.BaseConfig;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.hamcrest.text.IsEqualIgnoringCase;
 import org.junit.BeforeClass;
@@ -28,6 +29,13 @@ public class LineStatusTest
                .statusCode(200);
     }
 
+    @Test
+    public void testContentTypeIsJSON(){
+        lineStatusResponse
+                .then()
+                .assertThat()
+                .contentType(ContentType.JSON);
+    }
     @Test
     public void testDisplayFullOutput(){
         lineStatusResponse
